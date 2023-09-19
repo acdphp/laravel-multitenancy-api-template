@@ -6,9 +6,9 @@ git stash -q -u
 
 # PHP-CS-FIXER
 echo 'Running pint...'
-./vendor/bin/sail pint --test --quiet
+docker-compose run --rm --no-deps api vendor/bin/pint --test --quiet
 if [ $? -ne 0 ]; then
-  ./vendor/bin/sail pint && \
+  docker-compose run --rm --no-deps api vendor/bin/pint && \
     git add . && \
     git commit -m "Apply code style changes"
 
@@ -23,7 +23,7 @@ fi
 
 # PHP STAN
 echo 'Running phpstan...'
-./vendor/bin/phpstan --no-progress --memory-limit=1G
+docker-compose run --rm --no-deps api vendor/bin/phpstan --xdebug --no-progress --memory-limit=1G
 RESULT=$?
 
 # Pop back
