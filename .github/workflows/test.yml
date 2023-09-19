@@ -1,0 +1,80 @@
+name: Tests
+
+on:
+  push:
+    branches:
+      - main
+  pull_request: ~
+
+jobs:
+  build:
+    env:
+      DB_DATABASE: testing
+      DB_HOST: 127.0.0.1
+      DB_USERNAME: root
+      DB_PASSWORD: password
+      APP_ENV: testing
+    name: Test Suite
+    runs-on: ubuntu-20.04
+
+    services:
+      mysql:
+        image: postgres:16.0-alpine
+        ports:
+          - 5432:5432
+        env:
+          POSTGRES_PASSWORD: password
+        options: --health-cmd="pg_isready" --health-interval=10s --health-timeout=5s --health-retries=3
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: symfonycorp/security-checker-action@v4
+
+      - name: Setup PHP, with composer and extensions
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: 8.2
+          extensions: mbstring, xml, hash, ctype, iconv, curl, pcov, pdo_pgsql
+
+      - name: Get composer cache directory
+        id: composer-cache
+        run: echo "dir=$(composer config cache-files-dir)" >> $GITHUB_OUTPUT
+
+      - name: Cache composer dependencies
+        uses: actions/cache@v1
+        with:
+          path: ${{ steps.composer-cache.outputs.dir }}
+          key: composer-${{ hashFiles('composer.lock') }}
+          restore-keys: composer-
+
+      - name: Install Composer dependencies
+        run: composer install -n && cp .env.example .env
+
+      - name: Validate composer.lock
+        run: composer validate --strict
+
+      - name: Generate key
+        run: php artisan key:generate
+
+      - name: Generate passport keys
+        run: php artisan passport:keys -q
+
+      - name: Run pint
+        run: vendor/bin/pint --test
+
+      - name: Run Tests
+        run: php artisan test --coverage --min=90
+
+      - name: Upload Code Coverage to Codecov
+        uses: codecov/codecov-action@v2
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          file: ./clover.xml
+          flags: unit_tests
+          name: codecov-umbrella
+          fail_ci_if_error: true
+          verbose: true
+
+      - name: Run Phpstan
+        run: vendor/bin/phpstan --no-progress --debug --memory-limit=1G
