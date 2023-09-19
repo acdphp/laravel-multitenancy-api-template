@@ -1,6 +1,6 @@
 # Laravel API Template
 
-[![laravel](https://img.shields.io/badge/Laravel-10.10-blue)](https://laravel-news.com/laravel-10-10-0)
+[![laravel](https://img.shields.io/badge/Laravel-10.23-blue)](https://laravel-news.com/laravel-10-23-0)
 
 - Built for headless application, removed all view related files.
 - Using passport instead of sanctum.
@@ -13,43 +13,17 @@
     cp .env.example .env
     ```
 
-2. Copy git pre-push linter script hook
+2. Start
     ```sh
-    cp -rp .scripts/git/pre-push.sh .git/hooks/pre-push
+    ./start_local.sh
     ```
 
-3. Install dependencies
+3. Seed dummy data (optional)
     ```sh
-    composer i --optimize-autoloader --no-interaction
+    docker-compose run --rm --no-deps api artisan db:seed --class=TestDatabaseSeeder
     ```
 
-4. Run containers
-    ```sh
-    ./vendor/bin/sail up --build -d
-    ```
-   
-5. Generate IDE helpers
-   ```sh
-   ./vendor/bin/sail artisan ide-helper:generate
-   ./vendor/bin/sail artisan ide-helper:meta
-   ```
-
-6. Generate Passport keys
-   ```sh
-   ./vendor/bin/sail artisan passport:keys
-   ```
-
-7. Run database migration and seeder
-   ```sh
-   ./vendor/bin/sail artisan migrate:fresh --seed
-   ```
-
-8. Seed dummy data (optional)
-    ```sh
-    ./vendor/bin/sail artisan db:seed --class=TestDatabaseSeeder
-    ```
-
-9. Health Check
+4. Health Check
     ```sh
     curl http://localhost/api/health-check
     

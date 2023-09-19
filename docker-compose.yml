@@ -1,29 +1,43 @@
 services:
-    laravel.test:
+    api:
         build:
-            context: ./vendor/laravel/sail/runtimes/8.2
-            dockerfile: Dockerfile
-            args:
-                WWWGROUP: '${WWWGROUP}'
-        image: sail-8.2/app
-        extra_hosts:
-            - 'host.docker.internal:host-gateway'
-        ports:
-            - '${APP_PORT:-80}:80'
-        environment:
-            WWWUSER: '${WWWUSER}'
-            LARAVEL_SAIL: 1
-            XDEBUG_MODE: '${SAIL_XDEBUG_MODE:-off}'
-            XDEBUG_CONFIG: '${SAIL_XDEBUG_CONFIG:-client_host=host.docker.internal}'
-            IGNITION_LOCAL_SITES_PATH: '${PWD}'
+            context: .
+            dockerfile: '.docker/Dockerfile'
+            target: dev
+        image: app/api
+        restart: on-failure
         volumes:
             - '.:/var/www/html'
         networks:
-            - sail
+            - app
         depends_on:
             - pgsql
             - redis
-            - mailpit
+    nginx:
+        build:
+            context: .
+            dockerfile: '.docker/Dockerfile-nginx'
+        image: app/nginx
+        ports:
+            - '${FORWARD_APP_PORT:-80}:80'
+        networks:
+            - app
+        depends_on:
+            - api
+    horizon:
+        build:
+            context: .
+            dockerfile: '.docker/Dockerfile'
+            target: dev
+        image: app/api
+        restart: on-failure
+        volumes:
+            - '.:/var/www/html'
+        command: 'php artisan horizon'
+        networks:
+            - app
+        depends_on:
+            - api
     pgsql:
         image: 'postgres:16.0-alpine'
         ports:
@@ -32,19 +46,12 @@ services:
             POSTGRES_DB: '${DB_DATABASE}'
             POSTGRES_PASSWORD: '${DB_PASSWORD}'
         volumes:
-            - 'sail-pgsql:/var/lib/postgresql/data'
-            - './vendor/laravel/sail/database/pgsql/create-testing-database.sql:/docker-entrypoint-initdb.d/9-create-testing-database.sql'
+            - 'app-pgsql:/var/lib/postgresql/data'
+            - './.scripts/db/pgsql/create-testing-database.sql:/docker-entrypoint-initdb.d/10-create-testing-database.sql'
         networks:
-            - sail
+            - app
         healthcheck:
-            test:
-                - CMD
-                - pg_isready
-                - '-q'
-                - '-d'
-                - '${DB_DATABASE}'
-                - '-U'
-                - '${DB_USERNAME}'
+            test: [ "CMD", "pg_isready", "-q", "-d", "${DB_DATABASE}", "-U", "${DB_USERNAME}" ]
             retries: 3
             timeout: 5s
     redis:
@@ -52,14 +59,11 @@ services:
         ports:
             - '${FORWARD_REDIS_PORT:-6379}:6379'
         volumes:
-            - 'sail-redis:/data'
+            - 'app-redis:/data'
         networks:
-            - sail
+            - app
         healthcheck:
-            test:
-                - CMD
-                - redis-cli
-                - ping
+            test: [ "CMD", "redis-cli", "ping" ]
             retries: 3
             timeout: 5s
     mailpit:
@@ -68,12 +72,32 @@ services:
             - '${FORWARD_MAILPIT_PORT:-1025}:1025'
             - '${FORWARD_MAILPIT_DASHBOARD_PORT:-8025}:8025'
         networks:
-            - sail
+            - app
+    s3:
+        image: 'minio/minio:latest'
+        restart: 'on-failure'
+        ports:
+            - "${FORWARD_S3_API_PORT:-9000}:9000"
+            - "${FORWARD_S3_CONSOLE_PORT:-9001}:9001"
+        env_file: '.env'
+        environment:
+            MINIO_ROOT_USER: "${AWS_ACCESS_KEY_ID}"
+            MINIO_ROOT_PASSWORD: '${AWS_SECRET_ACCESS_KEY}'
+        command: 'server --address :9000 --console-address :9001 /data'
+        volumes:
+            - './.s3data:/data'
+        networks:
+            - app
+        healthcheck:
+            test: [ "CMD", "curl", "-f", "http://127.0.0.1:9000/minio/health/live" ]
+            interval: 30s
+            timeout: 20s
+            retries: 3
 networks:
-    sail:
+    app:
         driver: bridge
 volumes:
-    sail-pgsql:
+    app-pgsql:
         driver: local
-    sail-redis:
+    app-redis:
         driver: local
