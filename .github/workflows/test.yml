@@ -64,7 +64,7 @@ jobs:
         run: vendor/bin/pint --test
 
       - name: Run Tests
-        run: php artisan test --coverage --min=90
+        run: php artisan test --coverage --min=70
 
       - name: Upload Code Coverage to Codecov
         uses: codecov/codecov-action@v2

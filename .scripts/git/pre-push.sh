@@ -23,7 +23,7 @@ fi
 
 # PHP STAN
 echo 'Running phpstan...'
-./vendor/bin/phpstan --xdebug --no-progress --memory-limit=1G
+./vendor/bin/phpstan --no-progress --memory-limit=1G
 RESULT=$?
 
 # Pop back
