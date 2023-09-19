@@ -6,9 +6,9 @@ git stash -q -u
 
 # PHP-CS-FIXER
 echo 'Running pint...'
-docker-compose run --rm --no-deps api vendor/bin/pint --test --quiet
+docker-compose run --rm --no-deps api vendor/bin/pint --test --quiet --xdebug
 if [ $? -ne 0 ]; then
-  docker-compose run --rm --no-deps api vendor/bin/pint && \
+  docker-compose run --rm --no-deps api vendor/bin/pint --xdebug && \
     git add . && \
     git commit -m "Apply code style changes"
 
