@@ -18,11 +18,12 @@ jobs:
     runs-on: ubuntu-20.04
 
     services:
-      mysql:
+      pgsql:
         image: postgres:16.0-alpine
         ports:
           - 5432:5432
         env:
+          POSTGRES_DB: testing
           POSTGRES_PASSWORD: password
         options: --health-cmd="pg_isready" --health-interval=10s --health-timeout=5s --health-retries=3
 
