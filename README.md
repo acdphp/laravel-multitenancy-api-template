@@ -7,6 +7,9 @@
 - Base user authentication class.
 - Base company class for multi-tenancy.
 
+## Requirements
+- [Docker compose v2.1 or higher](https://docs.docker.com/compose/)
+
 ## Local docker-compose deployment
 1. Copy `.env.example` to `.env`
     ```sh
@@ -17,15 +20,25 @@
     ```sh
     ./start_local.sh
     ```
-
-3. Seed dummy data (optional)
+   
+3. Create oauth password grant client
     ```sh
-    docker-compose run --rm --no-deps api artisan db:seed --class=TestDatabaseSeeder
+    docker-compose exec -it api php artisan passport:client --password
     ```
 
-4. Health Check
+4. Seed dummy data (optional)
+    ```sh
+    docker-compose exec -it api php artisan db:seed --class=TestDatabaseSeeder
+    ```
+
+5. Health Check
     ```sh
     curl http://localhost/api/health-check
     
     # Output: {"status":"ok"}
+    ```
+
+6. Stop
+    ```sh
+    docker-compose down
     ```

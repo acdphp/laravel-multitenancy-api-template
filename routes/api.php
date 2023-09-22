@@ -8,7 +8,6 @@ use Illuminate\Support\Facades\Route;
 Route::middleware([
     'throttle:60,1',
 ])->group(function () {
-    // Health check
     Route::get('/health-check', static fn () => response()->json(['status' => 'ok']));
 });
 
@@ -18,6 +17,8 @@ Route::middleware([
 Route::middleware([
     'auth:api',
 ])->group(function () {
-    // Health check
     Route::get('/health-check-auth', static fn () => response()->json(['status' => 'auth - ok']));
+
+    Route::prefix('companies')
+        ->group(base_path('routes/api/companies.php'));
 });
