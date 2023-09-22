@@ -2,6 +2,7 @@ includes:
     - ./vendor/nunomaduro/larastan/extension.neon
     - ./vendor/phpstan/phpstan-mockery/extension.neon
     - ./vendor/ekino/phpstan-banned-code/extension.neon
+    - ./vendor/archtechx/enums/extension.neon
 
 parameters:
     checkModelProperties: true

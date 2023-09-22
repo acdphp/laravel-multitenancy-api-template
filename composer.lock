@@ -4,8 +4,54 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ffc3d9995afd4038c7ca666636afb260",
+    "content-hash": "cb90e4127e76b2be72c6470da4c2c84d",
     "packages": [
+        {
+            "name": "archtechx/enums",
+            "version": "v0.3.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/archtechx/enums.git",
+                "reference": "475f45e682b0771253707f9403b704759a08da5f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/archtechx/enums/zipball/475f45e682b0771253707f9403b704759a08da5f",
+                "reference": "475f45e682b0771253707f9403b704759a08da5f",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^8.1"
+            },
+            "require-dev": {
+                "nunomaduro/larastan": "^1.0|^2.4",
+                "orchestra/testbench": "^6.9|^7.0|^8.0",
+                "pestphp/pest": "^1.2|^2.0",
+                "pestphp/pest-plugin-laravel": "^1.0|^2.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "ArchTech\\Enums\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Samuel Štancl",
+                    "email": "samuel@archte.ch"
+                }
+            ],
+            "description": "Helpers for making PHP enums more lovable.",
+            "support": {
+                "issues": "https://github.com/archtechx/enums/issues",
+                "source": "https://github.com/archtechx/enums/tree/v0.3.2"
+            },
+            "time": "2023-02-15T13:05:41+00:00"
+        },
         {
             "name": "aws/aws-crt-php",
             "version": "v1.2.2",
@@ -9065,6 +9111,53 @@
                 }
             ],
             "time": "2023-09-19T05:42:37+00:00"
+        },
+        {
+            "name": "plannr/laravel-fast-refresh-database",
+            "version": "v1.1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/PlannrCrm/laravel-fast-refresh-database.git",
+                "reference": "f5055bd4406ea896be77530e9c0e61c47ea2d42d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/PlannrCrm/laravel-fast-refresh-database/zipball/f5055bd4406ea896be77530e9c0e61c47ea2d42d",
+                "reference": "f5055bd4406ea896be77530e9c0e61c47ea2d42d",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^8.1",
+                "symfony/process": "^5.0|^6.0"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^3.13",
+                "orchestra/testbench": "^7.17",
+                "pestphp/pest": "^1.22",
+                "symfony/var-dumper": "^6.2"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Plannr\\Laravel\\FastRefreshDatabase\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Sam Carré",
+                    "email": "29132017+Sammyjo20@users.noreply.github.com"
+                }
+            ],
+            "description": "Refresh your database faster than you've ever seen before 🚀",
+            "support": {
+                "issues": "https://github.com/PlannrCrm/laravel-fast-refresh-database/issues",
+                "source": "https://github.com/PlannrCrm/laravel-fast-refresh-database/tree/v1.1.1"
+            },
+            "time": "2023-09-19T12:18:50+00:00"
         },
         {
             "name": "psr/cache",

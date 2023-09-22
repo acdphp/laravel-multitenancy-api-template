@@ -12,11 +12,15 @@ RUN apt-get update && apt-get upgrade -y && apt-get install -y \
     zip \
     unzip \
     libpq-dev \
+    libpng-dev \
+    libjpeg-dev \
+    && docker-php-ext-configure gd --enable-gd --with-jpeg \
     && docker-php-ext-install \
       pdo_pgsql \
       sockets \
       opcache \
       pcntl\
+      gd \
     && rm -rf /tmp/* \
     && rm -rf /var/list/apt/* \
     && rm -rf /var/lib/apt/lists/* \
