@@ -24,7 +24,7 @@ abstract class TestCase extends BaseTestCase
                 'first',
                 'last',
                 'prev',
-                'next'
+                'next',
             ],
             'meta' => [
                 'current_page',

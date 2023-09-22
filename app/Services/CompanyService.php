@@ -16,8 +16,8 @@ class CompanyService
             Storage::delete($oldLogo);
         }
 
-        $key  = Str::uuid();
-        $path = $file?->storeAs(
+        $key = Str::uuid();
+        $path = $file->storeAs(
             'company_logos',
             "{$company->id}.{$key}.{$file->extension()}"
         );

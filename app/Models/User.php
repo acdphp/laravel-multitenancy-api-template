@@ -22,6 +22,7 @@ use Laravel\Passport\HasApiTokens;
  * @property string|null $remember_token
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
+ *
  * @mixin Eloquent
  */
 class User extends Authenticatable

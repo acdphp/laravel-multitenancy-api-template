@@ -11,8 +11,8 @@ trait EnumUtils
 {
     use InvokableCases;
     use Names;
-    use Values;
     use Options;
+    use Values;
 
     public static function random(): self
     {
