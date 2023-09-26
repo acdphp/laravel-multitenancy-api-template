@@ -36,15 +36,16 @@ use Laravel\Passport\HasApiTokens;
  * @property string|null $avatar
  * @property-read Company|null $company
 
+ *
  * @mixin Eloquent
  */
 class User extends Authenticatable
 {
-    use HasApiTokens,
+    use BelongsToTenant,
+        HasApiTokens,
         HasFactory,
         Notifiable,
-        SoftDeletes,
-        BelongsToTenant;
+        SoftDeletes;
 
     protected $fillable = [
         'firstname',

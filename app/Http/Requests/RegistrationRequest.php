@@ -14,10 +14,10 @@ class RegistrationRequest extends FormRequest
     protected function companyRules(): array
     {
         $companyRules = (new UpsertCompanyRequest())->rules();
-        $rules        = [];
+        $rules = [];
 
         foreach ($companyRules as $key => $companyRule) {
-            $rules['company.' . $key] = $companyRule;
+            $rules['company.'.$key] = $companyRule;
         }
 
         return $rules;

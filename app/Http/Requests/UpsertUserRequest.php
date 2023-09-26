@@ -19,7 +19,7 @@ class UpsertUserRequest extends FormRequest
     public function baseRules(): array
     {
         // Compare own id when updating self
-        if (!($userId = $this->user?->id) && $this->isMethod('put')) {
+        if (! ($userId = $this->user?->id) && $this->isMethod('put')) {
             $userId = $this->user()->id;
         }
 
@@ -29,7 +29,7 @@ class UpsertUserRequest extends FormRequest
             'email' => [
                 'required',
                 'email',
-                Rule::unique('companies')->when($userId, fn ($unique) => $unique->ignore($userId))
+                Rule::unique('companies')->when($userId, fn ($unique) => $unique->ignore($userId)),
             ],
             'password' => ['required', 'string', 'min:6', 'max:50'],
             'address' => ['nullable', 'string', 'max:255'],
