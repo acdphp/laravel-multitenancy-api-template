@@ -19,7 +19,7 @@ class CompanyResource extends JsonResource
             'name' => $this->name,
             'logo' => $this->logo ? Storage::url($this->logo) : null,
             'country' => $this->country,
-            'locale' => $this->locale->value,
+            'locale' => $this->locale->lowerName(),
         ];
     }
 }

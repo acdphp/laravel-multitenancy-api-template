@@ -30,7 +30,7 @@ class CompanyControllerTest extends TestCase
 
     public function test_index(): void
     {
-        $this->actingAs($this->user)
+        $response = $this->actingAs($this->user)
             ->get('/api/companies')
             ->assertOk()
             ->assertJsonStructure(

@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\Company\UpsertCompanyRequest;
 use App\Http\Requests\UploadImageRequest;
+use App\Http\Requests\UpsertCompanyRequest;
 use App\Http\Resources\CompanyResource;
 use App\Models\Company;
 use App\Services\CompanyService;
@@ -32,7 +32,7 @@ class CompanyController extends Controller
     {
         $company->update($request->validated());
 
-        return new CompanyResource($company);
+        return new CompanyResource($company->fresh());
     }
 
     public function destroy(Company $company): JsonResponse

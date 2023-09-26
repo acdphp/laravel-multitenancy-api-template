@@ -6,6 +6,7 @@
     "license": "MIT",
     "require": {
         "php": "^8.2",
+        "acdphp/laravel-multitenancy": "@dev",
         "archtechx/enums": "^0.3.2",
         "guzzlehttp/guzzle": "^7.8",
         "laravel/framework": "^10.23",
@@ -14,6 +15,7 @@
         "league/flysystem-aws-s3-v3": "^3.16"
     },
     "require-dev": {
+        "roave/security-advisories": "dev-latest",
         "barryvdh/laravel-ide-helper": "^2.13",
         "ekino/phpstan-banned-code": "^1.0",
         "fakerphp/faker": "^1.9.1",
@@ -70,5 +72,14 @@
         }
     },
     "minimum-stability": "stable",
-    "prefer-stable": true
+    "prefer-stable": true,
+    "repositories": [
+        {
+            "type": "path",
+            "url": "../laravel-multitenancy",
+            "options": {
+                "symlink": false
+            }
+        }
+    ]
 }
