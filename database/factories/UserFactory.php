@@ -34,6 +34,7 @@ class UserFactory extends Factory
             'telephone' => fake()->phoneNumber(),
             'locale' => Locale::random(),
             'role' => Role::random(),
+            'avatar' => null,
         ];
     }
 

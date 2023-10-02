@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Enums\Locale;
+use App\Models\Traits\WithDefaultLocale;
 use Eloquent;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -26,7 +27,8 @@ use Illuminate\Support\Carbon;
 class Company extends Model
 {
     use HasFactory,
-        SoftDeletes;
+        SoftDeletes,
+        WithDefaultLocale;
 
     protected $fillable = [
         'name',

@@ -59,12 +59,12 @@ class UserController extends Controller
         return $this->emptyResponse();
     }
 
-    public function me(Request $request): UserResource
+    public function mine(Request $request): UserResource
     {
         return $this->show(($request->user()));
     }
 
-    public function updateMe(UpsertUserRequest $request): UserResource
+    public function updateMine(UpsertUserRequest $request): UserResource
     {
         return $this->update($request, $request->user());
     }

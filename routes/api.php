@@ -21,4 +21,13 @@ Route::middleware([
 
     Route::prefix('companies')
         ->group(base_path('routes/api/companies.php'));
+
+    Route::prefix('users')
+        ->group(base_path('routes/api/users.php'));
 });
+
+/**
+ * Auth endpoints
+ */
+Route::prefix('auth')
+    ->group(base_path('routes/api/auth.php'));

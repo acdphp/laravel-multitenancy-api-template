@@ -12,7 +12,7 @@
             "dist": {
                 "type": "path",
                 "url": "../laravel-multitenancy",
-                "reference": "a4477a4a57f08cf5823f112eb198b8ba22635dce"
+                "reference": "4646b05ef36139c7bc2e305f56cb83022ab54eea"
             },
             "require": {
                 "php": "^8.0"
@@ -28,16 +28,16 @@
             "extra": {
                 "laravel": {
                     "providers": [
-                        "Acdphp\\Multitenancy\\ServiceProvider"
+                        "Acdphp\\Multitenancy\\TenancyServiceProvider"
                     ],
                     "aliases": {
-                        "Tenancy": "Acdphp\\Multitenancy\\Facades\\TenancyFacade"
+                        "Tenancy": "Acdphp\\Multitenancy\\Facades\\Tenancy"
                     }
                 }
             },
             "autoload": {
                 "psr-4": {
-                    "Acdphp\\Multitenancy\\": "src/"
+                    "Acdphp\\Multitenancy\\": "src"
                 }
             },
             "license": [

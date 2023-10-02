@@ -5,6 +5,7 @@ namespace App\Models;
 use Acdphp\Multitenancy\Traits\BelongsToTenant;
 use App\Enums\Locale;
 use App\Enums\Role;
+use App\Models\Traits\WithDefaultLocale;
 use Eloquent;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -24,8 +25,6 @@ use Laravel\Passport\HasApiTokens;
  * @property mixed $password
  * @property int $company_id
  * @property string|null $remember_token
- * @property Carbon|null $created_at
- * @property Carbon|null $updated_at
  * @property string $firstname
  * @property string $lastname
  * @property Role $role
@@ -35,7 +34,9 @@ use Laravel\Passport\HasApiTokens;
  * @property string|null $telephone
  * @property string|null $avatar
  * @property-read Company|null $company
-
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
+ * @property Carbon|null $deleted_at
  *
  * @mixin Eloquent
  */
@@ -45,7 +46,8 @@ class User extends Authenticatable
         HasApiTokens,
         HasFactory,
         Notifiable,
-        SoftDeletes;
+        SoftDeletes,
+        WithDefaultLocale;
 
     protected $fillable = [
         'firstname',

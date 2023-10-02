@@ -1,10 +1,9 @@
 <?php
 
-namespace DataResponses;
+namespace Tests\DataResponses;
 
 use App\Models\User;
 use Illuminate\Support\Facades\Storage;
-use Tests\DataResponses\CompanyResponse;
 
 class UserResponse
 {
@@ -18,7 +17,7 @@ class UserResponse
             'firstname' => $user->firstname,
             'lastname' => $user->lastname,
             'email' => $user->email,
-            'email_verified_at' => $user->email_verified_at,
+            'email_verified_at' => $user->email_verified_at->toISOString(),
             'address' => $user->address,
             'country' => $user->country,
             'telephone' => $user->telephone,

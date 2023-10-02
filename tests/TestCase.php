@@ -3,11 +3,19 @@
 namespace Tests;
 
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
+use Illuminate\Support\Facades\Http;
 use Plannr\Laravel\FastRefreshDatabase\Traits\FastRefreshDatabase;
 
 abstract class TestCase extends BaseTestCase
 {
     use CreatesApplication, FastRefreshDatabase;
+
+    public function setUp(): void
+    {
+        parent::setUp();
+
+        Http::preventStrayRequests();
+    }
 
     protected function wrappedData(array $data): array
     {

@@ -4,6 +4,7 @@ namespace App\Http\Requests;
 
 use App\Enums\Locale;
 use App\Enums\Role;
+use App\Models\User;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
@@ -11,27 +12,29 @@ class UpsertUserRequest extends FormRequest
 {
     public function rules(): array
     {
-        return $this->baseRules() + [
-            'role' => ['required', 'string', Rule::in($this->upsertableRoles())],
-        ];
+        $rules = $this->baseRules();
+
+        // Only admin or above can update role
+        if ($this->user()->role->isAdmin()) {
+            $rules += [
+                'role' => ['required', 'integer', Rule::in($this->upsertableRoles())],
+            ];
+        }
+
+        return $rules;
     }
 
     public function baseRules(): array
     {
-        // Compare own id when updating self
-        if (! ($userId = $this->user?->id) && $this->isMethod('put')) {
-            $userId = $this->user()->id;
-        }
-
         return [
-            'first_name' => ['required', 'string', 'min:1', 'max:255'],
-            'last_name' => ['required', 'string', 'min:1', 'max:255'],
+            'firstname' => ['required', 'string', 'min:1', 'max:255'],
+            'lastname' => ['required', 'string', 'min:1', 'max:255'],
             'email' => [
                 'required',
                 'email',
-                Rule::unique('companies')->when($userId, fn ($unique) => $unique->ignore($userId)),
+                Rule::unique('users', 'email')
+                    ->when($user = $this->selfUpdateUser(), fn ($unique) => $unique->ignore($user->id)),
             ],
-            'password' => ['required', 'string', 'min:6', 'max:50'],
             'address' => ['nullable', 'string', 'max:255'],
             'country' => ['nullable', 'string', 'max:2'],
             'telephone' => ['nullable', 'string', 'max:50'],
@@ -39,8 +42,32 @@ class UpsertUserRequest extends FormRequest
         ];
     }
 
+    protected function selfUpdateUser(): User|null
+    {
+        if (
+            empty($this->user) &&
+            $this->isMethod('put') &&
+            auth()->hasUser()
+        ) {
+            /**
+             * @var User $user
+             */
+            $user = auth()->user();
+            return $user;
+        }
+
+        return null;
+    }
+
     protected function upsertableRoles(): array
     {
-        return [Role::STAFF()];
+        $roles = [Role::STAFF()];
+
+        // Include self role for updating self
+        if ($user = $this->selfUpdateUser()) {
+            $roles[] = $user->role->value;
+        }
+
+        return $roles;
     }
 }
