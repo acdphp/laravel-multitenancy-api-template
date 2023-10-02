@@ -13,6 +13,7 @@ use Tests\TestCase;
 class UserControllerTest extends TestCase
 {
     private User $admin;
+
     private User $staff;
 
     private Company $company;
@@ -50,7 +51,7 @@ class UserControllerTest extends TestCase
     public function test_show(): void
     {
         $this->actingAs($this->admin)
-            ->get('/api/users/' . $this->admin->id)
+            ->get('/api/users/'.$this->admin->id)
             ->assertOk()
             ->assertJson(
                 $this->wrappedData(UserResponse::resource($this->admin))
@@ -60,7 +61,7 @@ class UserControllerTest extends TestCase
     public function test_update_by_admin(): void
     {
         $this->actingAs($this->admin)
-            ->put('/api/users/' . $this->staff->id, [
+            ->put('/api/users/'.$this->staff->id, [
                 'firstname' => 'New name',
                 'lastname' => 'New lastname',
                 'email' => 'new@email.com',
@@ -79,7 +80,7 @@ class UserControllerTest extends TestCase
     public function test_destroy(): void
     {
         $this->actingAs($this->admin)
-            ->delete('/api/users/' . $this->staff->id)
+            ->delete('/api/users/'.$this->staff->id)
             ->assertNoContent();
     }
 
@@ -88,7 +89,7 @@ class UserControllerTest extends TestCase
         $this->staff->delete();
 
         $this->actingAs($this->admin)
-            ->post('/api/users/' . $this->staff->id . '/restore')
+            ->post('/api/users/'.$this->staff->id.'/restore')
             ->assertOk()
             ->assertJson(
                 $this->wrappedData(UserResponse::resource($this->staff))
@@ -100,7 +101,7 @@ class UserControllerTest extends TestCase
         Storage::fake();
 
         $this->actingAs($this->admin)
-            ->post('/api/users/' . $this->staff->id . '/avatar', [
+            ->post('/api/users/'.$this->staff->id.'/avatar', [
                 'image' => UploadedFile::fake()->image('avatar.jpg'),
             ])
             ->assertNoContent();

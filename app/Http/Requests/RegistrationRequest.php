@@ -9,7 +9,7 @@ class RegistrationRequest extends FormRequest
     public function rules(): array
     {
         return (new UpsertUserRequest())->baseRules() + [
-            'password' => ['required', 'string', 'min:6', 'max:50']
+            'password' => ['required', 'string', 'min:6', 'max:50'],
         ] + $this->companyRules();
     }
 

@@ -1,7 +1,7 @@
 <?php
 
-use Laravel\Passport\Http\Controllers\AccessTokenController;
 use App\Http\Controllers\AuthController;
+use Laravel\Passport\Http\Controllers\AccessTokenController;
 
 Route::middleware([
     'throttle:5,1',

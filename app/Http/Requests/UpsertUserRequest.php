@@ -42,7 +42,7 @@ class UpsertUserRequest extends FormRequest
         ];
     }
 
-    protected function selfUpdateUser(): User|null
+    protected function selfUpdateUser(): ?User
     {
         if (
             empty($this->user) &&
@@ -53,6 +53,7 @@ class UpsertUserRequest extends FormRequest
              * @var User $user
              */
             $user = auth()->user();
+
             return $user;
         }
 

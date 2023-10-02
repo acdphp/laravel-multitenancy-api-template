@@ -42,7 +42,7 @@ class CompanyControllerTest extends TestCase
     public function test_show(): void
     {
         $this->actingAs($this->user)
-            ->get('/api/companies/' . $this->company->id)
+            ->get('/api/companies/'.$this->company->id)
             ->assertOk()
             ->assertJson(
                 $this->wrappedData(CompanyResponse::resource($this->company))
@@ -52,7 +52,7 @@ class CompanyControllerTest extends TestCase
     public function test_update(): void
     {
         $this->actingAs($this->user)
-            ->put('/api/companies/' . $this->company->id, [
+            ->put('/api/companies/'.$this->company->id, [
                 'name' => 'New name',
             ])
             ->assertOk()
@@ -66,7 +66,7 @@ class CompanyControllerTest extends TestCase
     public function test_destroy(): void
     {
         $this->actingAs($this->user)
-            ->delete('/api/companies/' . $this->company->id)
+            ->delete('/api/companies/'.$this->company->id)
             ->assertNoContent();
     }
 
@@ -75,7 +75,7 @@ class CompanyControllerTest extends TestCase
         $this->company->delete();
 
         $this->actingAs($this->user)
-            ->post('/api/companies/' . $this->company->id . '/restore')
+            ->post('/api/companies/'.$this->company->id.'/restore')
             ->assertOk()
             ->assertJson(
                 $this->wrappedData(CompanyResponse::resource($this->company))
@@ -87,7 +87,7 @@ class CompanyControllerTest extends TestCase
         Storage::fake();
 
         $this->actingAs($this->user)
-            ->post('/api/companies/' . $this->company->id.'/logo', [
+            ->post('/api/companies/'.$this->company->id.'/logo', [
                 'image' => UploadedFile::fake()->image('logo.jpg'),
             ])
             ->assertNoContent();
@@ -134,7 +134,7 @@ class CompanyControllerTest extends TestCase
     public function test_switch(): void
     {
         $this->actingAs($this->user)
-            ->post('/api/companies/' . $this->company->id.'/switch')
+            ->post('/api/companies/'.$this->company->id.'/switch')
             ->assertOk()
             ->assertJson(
                 $this->wrappedData(CompanyResponse::resource($this->company))
