@@ -24,7 +24,7 @@ class UpsertCompanyRequest extends FormRequest
                 Rule::unique('companies', 'name')->when($companyId, fn ($unique) => $unique->ignore($companyId)),
             ],
             'country' => ['nullable', 'string', 'size:2'],
-            'locale' => ['sometimes', Rule::in(Locale::lowerNames())],
+            'locale' => ['sometimes', Rule::in(Locale::namesLower())],
         ];
     }
 }

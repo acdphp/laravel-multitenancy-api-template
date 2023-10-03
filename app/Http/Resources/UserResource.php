@@ -23,7 +23,7 @@ class UserResource extends JsonResource
             'address' => $this->address,
             'country' => $this->country,
             'telephone' => $this->telephone,
-            'locale' => $this->locale->lowerName(),
+            'locale' => $this->locale->nameLower(),
             'role' => $this->role->value,
             'company' => new CompanyResource($this->whenLoaded('company')),
             'avatar' => $this->avatar ? Storage::url($this->avatar) : null,

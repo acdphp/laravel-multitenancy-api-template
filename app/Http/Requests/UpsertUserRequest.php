@@ -38,7 +38,7 @@ class UpsertUserRequest extends FormRequest
             'address' => ['nullable', 'string', 'max:255'],
             'country' => ['nullable', 'string', 'max:2'],
             'telephone' => ['nullable', 'string', 'max:50'],
-            'locale' => ['sometimes', Rule::in(Locale::lowerNames())],
+            'locale' => ['sometimes', Rule::in(Locale::namesLower())],
         ];
     }
 

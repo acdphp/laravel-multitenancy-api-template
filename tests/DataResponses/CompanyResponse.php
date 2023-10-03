@@ -17,7 +17,7 @@ class CompanyResponse
             'name' => $company->name,
             'logo' => $company->logo ? Storage::url($company->logo) : null,
             'country' => $company->country,
-            'locale' => $company->locale->lowerName(),
+            'locale' => $company->locale->nameLower(),
         ];
     }
 }

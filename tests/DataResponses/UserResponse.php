@@ -21,7 +21,7 @@ class UserResponse
             'address' => $user->address,
             'country' => $user->country,
             'telephone' => $user->telephone,
-            'locale' => $user->locale->lowerName(),
+            'locale' => $user->locale->nameLower(),
             'role' => $user->role->value,
             'avatar' => $user->avatar ? Storage::url($user->avatar) : null,
         ];
