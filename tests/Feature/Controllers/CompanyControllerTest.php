@@ -2,7 +2,6 @@
 
 namespace Tests\Feature\Controllers;
 
-use App\Enums\Role;
 use App\Http\Middleware\RoleAuthorization;
 use App\Models\Company;
 use App\Models\User;

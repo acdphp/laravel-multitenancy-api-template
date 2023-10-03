@@ -22,7 +22,7 @@ class RoleAuthorizationTest extends TestCase
     public function test_role_authorization(Role $testRole): void
     {
         // Define dummy route with role authorization middleware to test
-        \Route::middleware('role:' . $testRole->nameLower())
+        \Route::middleware('role:'.$testRole->nameLower())
             ->get('/_test_route', fn () => 'ok');
 
         foreach (Role::cases() as $role) {
