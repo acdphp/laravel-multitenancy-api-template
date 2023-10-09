@@ -12,8 +12,8 @@ class CompanyService
     public function uploadLogo(Company $company, UploadedFile $file): void
     {
         // Delete existing logo
-        if ($oldLogo = $company->getRawOriginal('logo')) {
-            Storage::delete($oldLogo);
+        if ($old = $company->getRawOriginal('logo')) {
+            Storage::delete($old);
         }
 
         $key = Str::uuid();

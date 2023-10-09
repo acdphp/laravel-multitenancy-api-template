@@ -2,7 +2,9 @@
 
 namespace App\Providers;
 
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\ServiceProvider;
+use Laravel\Passport\Passport;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -11,7 +13,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
+        Passport::ignoreRoutes();
     }
 
     /**
@@ -19,6 +21,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        if (! $this->app->isProduction()) {
+            Model::preventLazyLoading();
+            Model::preventAccessingMissingAttributes();
+        }
     }
 }

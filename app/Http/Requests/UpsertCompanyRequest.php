@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\Company;
+namespace App\Http\Requests;
 
 use App\Enums\Locale;
 use Illuminate\Foundation\Http\FormRequest;
@@ -21,10 +21,10 @@ class UpsertCompanyRequest extends FormRequest
                 'string',
                 'min:5',
                 'max:255',
-                Rule::unique('companies')->when($companyId, fn ($unique) => $unique->ignore($companyId)),
+                Rule::unique('companies', 'name')->when($companyId, fn ($unique) => $unique->ignore($companyId)),
             ],
             'country' => ['nullable', 'string', 'size:2'],
-            'locale' => ['sometimes', Rule::in(Locale::names())],
+            'locale' => ['sometimes', Rule::in(Locale::namesLower())],
         ];
     }
 }

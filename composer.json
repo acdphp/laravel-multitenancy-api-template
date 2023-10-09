@@ -1,11 +1,12 @@
 {
-    "name": "acdphp/laravel-api-template",
+    "name": "acdphp/laravel-multitenancy-api-template",
     "type": "template",
-    "description": "Base Laravel framework with api ready structure.",
-    "keywords": ["laravel", "framework", "api"],
+    "description": "Base Laravel framework with multi-tenancy api ready structure.",
+    "keywords": ["laravel", "framework", "api", "multitenancy", "saas"],
     "license": "MIT",
     "require": {
         "php": "^8.2",
+        "acdphp/laravel-multitenancy": "^1.0",
         "archtechx/enums": "^0.3.2",
         "guzzlehttp/guzzle": "^7.8",
         "laravel/framework": "^10.23",
@@ -14,6 +15,7 @@
         "league/flysystem-aws-s3-v3": "^3.16"
     },
     "require-dev": {
+        "roave/security-advisories": "dev-latest",
         "barryvdh/laravel-ide-helper": "^2.13",
         "ekino/phpstan-banned-code": "^1.0",
         "fakerphp/faker": "^1.9.1",

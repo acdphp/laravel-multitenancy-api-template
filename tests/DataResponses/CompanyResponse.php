@@ -2,7 +2,6 @@
 
 namespace Tests\DataResponses;
 
-use App\Http\Resources\CompanyResource;
 use App\Models\Company;
 use Illuminate\Support\Facades\Storage;
 
@@ -18,7 +17,7 @@ class CompanyResponse
             'name' => $company->name,
             'logo' => $company->logo ? Storage::url($company->logo) : null,
             'country' => $company->country,
-            'locale' => $company->locale->value,
+            'locale' => $company->locale->nameLower(),
         ];
     }
 }

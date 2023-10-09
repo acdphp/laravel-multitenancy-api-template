@@ -2,6 +2,7 @@
 
 namespace Tests\Feature\Controllers;
 
+use App\Http\Middleware\RoleAuthorization;
 use App\Models\Company;
 use App\Models\User;
 use Illuminate\Http\UploadedFile;
@@ -19,9 +20,12 @@ class CompanyControllerTest extends TestCase
     {
         parent::setUp();
 
+        $this->withoutMiddleware([RoleAuthorization::class]);
+
         $this->company = Company::factory()->create([
             'name' => 'My Company',
         ]);
+        \Tenancy::setTenant($this->company);
 
         $this->user = User::factory()->create([
             'email' => 'user@email.com',
@@ -71,11 +75,16 @@ class CompanyControllerTest extends TestCase
 
     public function test_restore(): void
     {
+        $company = Company::factory()->create([
+            'name' => 'Another Company',
+        ]);
+        $company->delete();
+
         $this->actingAs($this->user)
-            ->post('/api/companies/'.$this->company->id.'/restore')
+            ->post('/api/companies/'.$company->id.'/restore')
             ->assertOk()
             ->assertJson(
-                $this->wrappedData(CompanyResponse::resource($this->company))
+                $this->wrappedData(CompanyResponse::resource($company))
             );
     }
 

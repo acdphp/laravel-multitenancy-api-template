@@ -185,4 +185,5 @@ return [
         // 'Example' => App\Facades\Example::class,
     ])->toArray(),
 
+    'default_locale' => \App\Enums\Locale::EN,
 ];

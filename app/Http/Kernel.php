@@ -2,6 +2,7 @@
 
 namespace App\Http;
 
+use Acdphp\Multitenancy\Http\Middleware\InjectTenancyFromAuth;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
@@ -33,6 +34,7 @@ class Kernel extends HttpKernel
             \App\Http\Middleware\ForceJsonResponse::class,
             \Illuminate\Routing\Middleware\ThrottleRequests::class.':api',
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
+            InjectTenancyFromAuth::class,
         ],
     ];
 
@@ -54,5 +56,6 @@ class Kernel extends HttpKernel
         'signed' => \App\Http\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
+        'role' => \App\Http\Middleware\RoleAuthorization::class,
     ];
 }
