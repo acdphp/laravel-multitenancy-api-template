@@ -4,15 +4,21 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "225a2b92b0abbc170b995fb541a7d839",
+    "content-hash": "61428c63a736eccadc47bc75cf4f974c",
     "packages": [
         {
             "name": "acdphp/laravel-multitenancy",
-            "version": "dev-base",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/acdphp/laravel-multitenancy.git",
+                "reference": "5d40c6f5a160c9cb91195972db60d16fef0dd2e3"
+            },
             "dist": {
-                "type": "path",
-                "url": "../laravel-multitenancy",
-                "reference": "4646b05ef36139c7bc2e305f56cb83022ab54eea"
+                "type": "zip",
+                "url": "https://api.github.com/repos/acdphp/laravel-multitenancy/zipball/5d40c6f5a160c9cb91195972db60d16fef0dd2e3",
+                "reference": "5d40c6f5a160c9cb91195972db60d16fef0dd2e3",
+                "shasum": ""
             },
             "require": {
                 "php": "^8.0"
@@ -40,6 +46,7 @@
                     "Acdphp\\Multitenancy\\": "src"
                 }
             },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -50,10 +57,11 @@
                 }
             ],
             "description": "Laravel multi-tenancy model scoping and automatic tenancy assignment.",
-            "transport-options": {
-                "symlink": false,
-                "relative": true
-            }
+            "support": {
+                "issues": "https://github.com/acdphp/laravel-multitenancy/issues",
+                "source": "https://github.com/acdphp/laravel-multitenancy/tree/1.0.0"
+            },
+            "time": "2023-10-06T13:12:27+00:00"
         },
         {
             "name": "archtechx/enums",
@@ -11283,7 +11291,6 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "acdphp/laravel-multitenancy": 20,
         "roave/security-advisories": 20
     },
     "prefer-stable": true,
