@@ -7,7 +7,7 @@ Route::middleware([
     'throttle:5,1',
 ])->group(function () {
     Route::middleware(['tenancy.scope.bypass'])->post('/login', [AccessTokenController::class, 'issueToken']);
-    Route::middleware(['tenancy.creating.bypass'])->post('/register', [AuthController::class, 'register']);
+    Route::post('/register', [AuthController::class, 'register']);
 });
 
 Route::middleware([

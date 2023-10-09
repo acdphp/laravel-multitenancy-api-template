@@ -17,7 +17,7 @@ class UserResponse
             'firstname' => $user->firstname,
             'lastname' => $user->lastname,
             'email' => $user->email,
-            'email_verified_at' => $user->email_verified_at->toISOString(),
+            'email_verified_at' => $user->email_verified_at?->toISOString(),
             'address' => $user->address,
             'country' => $user->country,
             'telephone' => $user->telephone,
