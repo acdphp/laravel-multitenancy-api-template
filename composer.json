@@ -1,8 +1,8 @@
 {
-    "name": "acdphp/laravel-api-template",
+    "name": "acdphp/laravel-multitenancy-api-template",
     "type": "template",
-    "description": "Base Laravel framework with api ready structure.",
-    "keywords": ["laravel", "framework", "api"],
+    "description": "Base Laravel framework with multi-tenancy api ready structure.",
+    "keywords": ["laravel", "framework", "api", "multitenancy", "saas"],
     "license": "MIT",
     "require": {
         "php": "^8.2",

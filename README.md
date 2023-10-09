@@ -1,11 +1,10 @@
-# Laravel API Template
+# Laravel Multi-tenancy API Template
 
 [![laravel](https://img.shields.io/badge/Laravel-10.23-blue)](https://laravel-news.com/laravel-10-23-0)
 
-- Built for headless application, removed all view related files.
-- Using passport instead of sanctum.
+- Built for multi-tenant headless application, removed all view related files.
+- Base company class for multi-tenancy using [acdphp/laravel-multitenancy](https://packagist.org/packages/acdphp/laravel-multitenancy).
 - Base user authentication class.
-- Base company class for multi-tenancy.
 
 ## Requirements
 - [Docker compose v2.1 or higher](https://docs.docker.com/compose/)
