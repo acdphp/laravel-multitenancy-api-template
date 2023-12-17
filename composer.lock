@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d26fb698478b84ddbf0d502ad2fd91f0",
+    "content-hash": "829faa26f95cd82f9af613d96dad94ee",
     "packages": [
         {
             "name": "acdphp/laravel-multitenancy",
@@ -62,6 +62,63 @@
                 "source": "https://github.com/acdphp/laravel-multitenancy/tree/1.0.1"
             },
             "time": "2023-10-09T08:08:26+00:00"
+        },
+        {
+            "name": "acdphp/laravel-schedule-police",
+            "version": "v1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/acdphp/laravel-schedule-police.git",
+                "reference": "1a7a1470c54ef9dfff3b70a93d0928c0ad765926"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/acdphp/laravel-schedule-police/zipball/1a7a1470c54ef9dfff3b70a93d0928c0ad765926",
+                "reference": "1a7a1470c54ef9dfff3b70a93d0928c0ad765926",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^8.0"
+            },
+            "require-dev": {
+                "ekino/phpstan-banned-code": "^1.0",
+                "larastan/larastan": "^2.7",
+                "laravel/pint": "^1.5",
+                "orchestra/testbench": "^7.37",
+                "pestphp/pest": "^1.23",
+                "pestphp/pest-plugin-laravel": "^1.4",
+                "phpstan/phpstan": "^1.10"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Acdphp\\SchedulePolice\\SchedulePoliceServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Acdphp\\SchedulePolice\\": "src",
+                    "Acdphp\\SchedulePolice\\Tests\\": "tests"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Carlo Dinopol",
+                    "email": "carlo.dinopol@gmail.com"
+                }
+            ],
+            "description": "Stop, start or execute scheduled commands from a simple dashboard without redeploying, while maintaining the visibility, control, and reviewability of the configurations in your codebase.",
+            "support": {
+                "issues": "https://github.com/acdphp/laravel-schedule-police/issues",
+                "source": "https://github.com/acdphp/laravel-schedule-police/tree/v1.0.0"
+            },
+            "time": "2023-12-16T10:00:54+00:00"
         },
         {
             "name": "archtechx/enums",
@@ -11319,5 +11376,5 @@
         "php": "^8.2"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.6.0"
+    "plugin-api-version": "2.3.0"
 }

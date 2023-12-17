@@ -8,6 +8,12 @@
 ## Requirements
 - [Docker compose v2.1 or higher](https://docs.docker.com/compose/)
 
+## Pre-configured utilities
+- [Laravel Multitenancy](https://github.com/acdphp/laravel-multitenancy)
+- [Laravel Horizon](https://github.com/laravel/horizon)
+- [Laravel Passport](https://github.com/laravel/passport)
+- [Laravel Schedule Police](https://github.com/acdphp/laravel-schedule-police)
+
 ## Local docker-compose deployment
 1. Copy `.env.example` to `.env`
     ```sh
