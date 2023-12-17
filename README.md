@@ -1,8 +1,7 @@
 # Laravel Multi-tenancy API Template
 
-[![laravel](https://img.shields.io/badge/Laravel-10.23-blue)](https://laravel-news.com/laravel-10-23-0)
+[![laravel](https://img.shields.io/badge/Laravel-10.26-blue)](https://laravel-news.com/laravel-10-26-0)
 
-- Built for multi-tenant headless application, removed all view related files.
 - Base company class for multi-tenancy using [acdphp/laravel-multitenancy](https://packagist.org/packages/acdphp/laravel-multitenancy).
 - Base user authentication class.
 
