@@ -15,7 +15,7 @@ class UpsertUserRequest extends FormRequest
         $rules = $this->baseRules();
 
         // Only admin or above can update role
-        if ($this->user()->role->isAdmin()) {
+        if (Role::isAdminRole($this->user()->role)) {
             $rules += [
                 'role' => ['required', 'integer', Rule::in($this->upsertableRoles())],
             ];
