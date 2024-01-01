@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "829faa26f95cd82f9af613d96dad94ee",
+    "content-hash": "43b46e6c44f4b07edd87e8c9d878ab44",
     "packages": [
         {
             "name": "acdphp/laravel-multitenancy",
-            "version": "1.0.1",
+            "version": "v2.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/acdphp/laravel-multitenancy.git",
-                "reference": "3734570b97a42ba62a847638a159be94e8fd56c8"
+                "reference": "8560ad81fc5bd0937135e4e791f18880d0a110be"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/acdphp/laravel-multitenancy/zipball/3734570b97a42ba62a847638a159be94e8fd56c8",
-                "reference": "3734570b97a42ba62a847638a159be94e8fd56c8",
+                "url": "https://api.github.com/repos/acdphp/laravel-multitenancy/zipball/8560ad81fc5bd0937135e4e791f18880d0a110be",
+                "reference": "8560ad81fc5bd0937135e4e791f18880d0a110be",
                 "shasum": ""
             },
             "require": {
@@ -25,9 +25,11 @@
             },
             "require-dev": {
                 "ekino/phpstan-banned-code": "^1.0",
-                "laravel/pint": "^1.13",
-                "nunomaduro/larastan": "^2.6",
-                "orchestra/testbench": "^8.10",
+                "larastan/larastan": "^2.7",
+                "laravel/pint": "^1.5",
+                "orchestra/testbench": "^7.38",
+                "pestphp/pest": "^1.23",
+                "pestphp/pest-plugin-laravel": "^1.4",
                 "phpstan/phpstan": "^1.10"
             },
             "type": "library",
@@ -43,7 +45,7 @@
             },
             "autoload": {
                 "psr-4": {
-                    "Acdphp\\Multitenancy\\": "src"
+                    "Acdphp\\Multitenancy\\": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -59,9 +61,9 @@
             "description": "Laravel multi-tenancy model scoping and automatic tenancy assignment.",
             "support": {
                 "issues": "https://github.com/acdphp/laravel-multitenancy/issues",
-                "source": "https://github.com/acdphp/laravel-multitenancy/tree/1.0.1"
+                "source": "https://github.com/acdphp/laravel-multitenancy/tree/v2.1.1"
             },
-            "time": "2023-10-09T08:08:26+00:00"
+            "time": "2023-12-30T08:10:56+00:00"
         },
         {
             "name": "acdphp/laravel-schedule-police",
@@ -11376,5 +11378,5 @@
         "php": "^8.2"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.3.0"
+    "plugin-api-version": "2.6.0"
 }

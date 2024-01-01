@@ -1,7 +1,8 @@
 <?php
 
-namespace Feature\Middlewares;
+namespace Tests\Feature\Middlewares;
 
+use Acdphp\Multitenancy\Facades\Tenancy;
 use App\Enums\Role;
 use App\Models\Company;
 use App\Models\User;
@@ -13,7 +14,7 @@ class RoleAuthorizationTest extends TestCase
     {
         parent::setUp();
 
-        \Tenancy::setTenant(Company::factory()->create());
+        Tenancy::setTenantIdResolver(static fn () => Company::factory()->create()->id);
     }
 
     /**

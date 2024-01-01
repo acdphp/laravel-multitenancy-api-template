@@ -1,6 +1,6 @@
 <?php
 
-namespace Feature\Controllers;
+namespace Tests\Feature\Controllers;
 
 use App\Enums\Role;
 use App\Http\Middleware\RoleAuthorization;
@@ -26,16 +26,17 @@ class UserControllerTest extends TestCase
         $company = Company::factory()->create([
             'name' => 'My Company',
         ]);
-        \Tenancy::setTenant($company);
 
         $this->user1 = User::factory()->create([
             'email' => 'admin@email.com',
             'role' => Role::ADMIN,
+            'company_id' => $company->id,
         ]);
 
         $this->user2 = User::factory()->create([
             'email' => 'staff@email.com',
             'role' => Role::STAFF,
+            'company_id' => $company->id,
         ]);
     }
 

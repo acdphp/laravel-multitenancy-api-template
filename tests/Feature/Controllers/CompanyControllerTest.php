@@ -22,14 +22,11 @@ class CompanyControllerTest extends TestCase
 
         $this->withoutMiddleware([RoleAuthorization::class]);
 
-        $this->company = Company::factory()->create([
-            'name' => 'My Company',
-        ]);
-        \Tenancy::setTenant($this->company);
-
         $this->user = User::factory()->create([
             'email' => 'user@email.com',
         ]);
+
+        $this->company = $this->user->company;
     }
 
     public function test_index(): void
