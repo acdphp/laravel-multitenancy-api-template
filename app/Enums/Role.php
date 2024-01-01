@@ -12,10 +12,10 @@ enum Role: int
     case ADMIN = 2;
     case STAFF = 3;
 
-    public function isAdmin(): bool
+    public static function isAdminRole(Role $role): bool
     {
         return
-            $this === self::SUPER_ADMIN ||
-            $this === self::ADMIN;
+            $role === self::SUPER_ADMIN ||
+            $role === self::ADMIN;
     }
 }

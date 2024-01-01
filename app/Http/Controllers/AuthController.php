@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Acdphp\Multitenancy\Exceptions\InvalidTenantClassException;
 use Acdphp\Multitenancy\Facades\Tenancy;
 use App\Http\Requests\RegistrationRequest;
 use App\Http\Resources\UserResource;
@@ -11,12 +10,12 @@ use App\Models\User;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Throwable;
 
 class AuthController extends Controller
 {
     /**
-     * @throws \Throwable
-     * @throws InvalidTenantClassException
+     * @throws Throwable
      */
     public function register(RegistrationRequest $request): ?UserResource
     {
@@ -26,7 +25,7 @@ class AuthController extends Controller
 
         DB::beginTransaction();
         $company = Company::create($request->validated('company'));
-        Tenancy::setTenant($company);
+        Tenancy::setTenantIdResolver(static fn () => $company->id);
 
         $user = User::create(array_merge($request->safe()->except('company')) + [
             'role' => config('auth.default_registration_role'),

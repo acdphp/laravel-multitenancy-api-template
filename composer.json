@@ -6,7 +6,7 @@
     "license": "MIT",
     "require": {
         "php": "^8.2",
-        "acdphp/laravel-multitenancy": "^1.0",
+        "acdphp/laravel-multitenancy": "^2.1",
         "acdphp/laravel-schedule-police": "^1.0",
         "archtechx/enums": "^0.3.2",
         "guzzlehttp/guzzle": "^7.8",
@@ -16,19 +16,19 @@
         "league/flysystem-aws-s3-v3": "^3.16"
     },
     "require-dev": {
-        "roave/security-advisories": "dev-latest",
         "barryvdh/laravel-ide-helper": "^2.13",
         "ekino/phpstan-banned-code": "^1.0",
         "fakerphp/faker": "^1.9.1",
+        "larastan/larastan": "^2.7",
         "laravel/pint": "^1.0",
         "laravel/tinker": "^2.8",
         "mockery/mockery": "^1.4.4",
         "nunomaduro/collision": "^7.0",
-        "nunomaduro/larastan": "^2.6",
         "phpstan/phpstan": "^1.10",
         "phpstan/phpstan-mockery": "^1.1",
         "phpunit/phpunit": "^10.1",
         "plannr/laravel-fast-refresh-database": "^1.1",
+        "roave/security-advisories": "dev-latest",
         "spatie/laravel-ignition": "^2.0"
     },
     "autoload": {
@@ -49,7 +49,9 @@
             "@php artisan package:discover --ansi"
         ],
         "post-update-cmd": [
-            "@php artisan vendor:publish --tag=laravel-assets --ansi --force"
+            "@php artisan vendor:publish --tag=laravel-assets --ansi --force",
+            "@php artisan ide-helper:generate",
+            "@php artisan ide-helper:meta"
         ],
         "post-root-package-install": [
             "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""

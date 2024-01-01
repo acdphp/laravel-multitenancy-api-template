@@ -2,7 +2,6 @@
 
 namespace App\Http;
 
-use Acdphp\Multitenancy\Http\Middleware\InjectTenancyFromAuth;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
@@ -43,7 +42,6 @@ class Kernel extends HttpKernel
             \App\Http\Middleware\ForceJsonResponse::class,
             \Illuminate\Routing\Middleware\ThrottleRequests::class.':api',
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
-            InjectTenancyFromAuth::class,
         ],
     ];
 
