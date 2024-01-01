@@ -53,6 +53,9 @@ trait EnumUtils
 
     public static function casesExcept(self $role): array
     {
+        /**
+         * @phpstan-ignore-next-line
+         */
         return array_filter(self::cases(), static fn ($case) => $case !== $role);
     }
 }
