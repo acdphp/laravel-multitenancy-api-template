@@ -32,7 +32,7 @@
 
 4. Seed dummy data (optional)
     ```sh
-    docker-compose exec -it api php artisan db:seed --class=TestDatabaseSeeder
+    docker-compose exec -it api php artisan db:seed
     ```
 
 5. Health Check
@@ -46,3 +46,10 @@
     ```sh
     docker-compose down
     ```
+
+## Default superadmin user and company
+```
+company.name: config('app.name')
+email: superadmin@email.com
+password: a_little_harder_password
+```

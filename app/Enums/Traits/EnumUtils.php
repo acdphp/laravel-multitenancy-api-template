@@ -50,4 +50,9 @@ trait EnumUtils
     {
         return array_combine(self::namesLower(), self::cases());
     }
+
+    public static function casesExcept(self $role): array
+    {
+        return array_filter(self::cases(), static fn ($case) => $case !== $role);
+    }
 }
